@@ -51,4 +51,13 @@ public class IntegrationTest {
         assertThat(this.restTemplate.getForEntity("http://localhost:" + port + "/kamoulox",
                 String.class).getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
+
+    @Test
+    public void shouldReturn200ifPage() throws Exception{
+        int nbrSeasons = 8;
+        for (int i=1; i<= nbrSeasons;i++){
+            assertThat(this.restTemplate.getForEntity("http://localhost:" + port + "/characters?season=" + i,
+                String.class).getStatusCode()).isEqualTo(HttpStatus.OK);
+        }
+    }
 }
